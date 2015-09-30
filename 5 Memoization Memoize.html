@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Memoize</title>
+    <script>
+
+        // Refer to Stoyan Stefanov - Design Patterns / Addy Osmani
+
+        function square(x) {
+            return x * x;
+        }
+
+        function memoize(fn) {
+            var cache = {};
+            return function () {
+                console.log(arguments);
+                // todo: generate a hash from the array of arguments
+                var arr = Array.prototype.slice.call(arguments); // Revise with James
+                var key = arr.join(','); // todo: make this robust - check out base64 encoding
+                console.log(key);
+
+                if (typeof cache[key] === 'undefined') {
+                    cache[key] = fn.apply(null, arguments);
+                }
+
+                return cache[key];
+            };
+        }
+
+
+        var square_memoized = memoize(square);
+
+        square_memoized(5);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

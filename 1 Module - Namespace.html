@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Namespace Pattern</title>
+    <script>
+
+        // Objective is to dynamically create the library object
+
+
+
+        var likhita = {
+            security: {
+                generateRSAPair: function () {
+                    // todo: create a public and private key and return the public key
+                    // window.crypto
+                }
+            },
+            init: function (str, fn) {
+                var modules = str.split('.');
+                console.log(modules);
+                if (modules[0] === 'likhita') modules.shift();
+                var method = modules.pop();
+                console.log(modules);
+
+                var module = modules.reduce(function (parent, elem) {
+                    if (typeof parent[elem] === 'undefined') { // likhita.ajax === undefined
+                        parent[elem] = {};
+                    }
+                    return parent[elem]; // returning the ajax object
+                }, likhita);
+
+                module[method] = fn;// get['call'], get.call =
+
+                console.log(likhita);
+            }
+        };
+
+        likhita.init('likhita.ajax.idempotent.get.call', function () {
+            console.log('Hello World!');
+        });
+
+        likhita.init('likhita.ajax.idempotent.post.call', function () {
+            console.log('Making a post request!');
+        });
+
+        likhita.ajax.idempotent.get.call();
+        likhita.ajax.idempotent.post.call();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Memoization</title>
+    <script>
+
+        square.cache = {};
+        function square(x) {
+            if (typeof square.cache[x] === 'undefined') {
+                console.log('Actually calcualting x here: ', x);
+                square.cache[x] = x * x;
+            }
+            return square.cache[x];
+        }
+
+        console.log(square(13));
+        console.log(square(13));
+        console.log(square(13));
+
+        // todo: Create a memoized for generating n primes, factorials, fibonacci
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

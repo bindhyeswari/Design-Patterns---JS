@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Private Member</title>
+    <script>
+
+        function Certificate(str) {
+            var _key = str;
+            Object.defineProperty(this, 'key', {
+                get: function () {
+                    return _key;
+                }
+            });
+        }
+
+        var certificate = new Certificate('asdf-asdf53asd4f-afdfads');
+        certificate.key = '453465asdf54as53df4';
+        console.log(certificate.key);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

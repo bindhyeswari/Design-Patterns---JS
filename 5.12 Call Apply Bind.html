@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Call Apply Bind</title>
+    <script>
+
+        // 'use strict';
+
+        function test(param1, param2, param3) {
+            console.log(this); // this refers to the context
+            console.log(param1, param2, param3);
+        }
+
+        test.call({
+            name: 'James'
+        }, 10, 11, 12);
+
+        test.apply({
+            name: 'James'
+        }, [10, 11, 12]);
+
+        var arr = [10, 11, 12];
+        test.apply({
+            name: 'James'
+        }, arr);
+
+        var params = [100,22,90];
+
+        function invoke() {
+            var args = Array.prototype.slice.call(arguments); // [test, 11, 12, 13]
+            var fn = args.shift(); // [11, 12, 13]
+            fn.apply(null, args);
+        }
+
+        invoke(test, 11, 12, 13);
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

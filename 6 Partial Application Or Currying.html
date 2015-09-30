@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Currying</title>
+    <script>
+
+        // Partial application
+
+        function multiply (x, y) {
+            if (arguments.length === 2) {
+                return x * y;
+            } else {
+                return function (y) {
+                    return x * y;
+                }
+            }
+        }
+
+        // console.log(multiply(0.25, 64));
+
+        var discount25 = multiply(0.25);
+        var half = multiply(0.50);
+
+        console.log('25% discount:', discount25(64));
+        console.log('Half the discount: ', half(64));
+
+        function partialize(fn) {
+            // fn has named parameters
+            // does the function have all the parameters it needs?
+
+
+            return function () { // this is the sum_curried function
+                console.log('number of arguments required by the function sum: ', fn.length);
+                console.log('arguments provided to sum_curried: ', arguments);
+
+                if (arguments.length === fn.length) {
+                    return fn.apply(null, arguments); // sum(arguments[0], arguments[1], arguments[2])
+                } else {
+                    // arguments is not 3
+                    return fn.bind(null, arguments[0], arguments[1]);
+                }
+            };
+        }
+
+        function sum(x, y, z) {
+            return x + y + z;
+        }
+
+        var sum_curried = partialize(sum);
+        console.log(sum_curried(1,2));
+
+        // sum_curried -> 3 parameters, gives back the sume
+        // 2 parameters, returns function that can take 1 input
+        // 1 parameter, returns function that can take 2 parameters
+
+        var alok = {
+            name: 'Alok',
+            sayHello: function (param) {
+                console.log(param, this);
+            }
+        };
+
+        alok.sayHello('Hi From');
+        alok.sayHello.apply(alok, ['Hi From']);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
