@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Publisher Subscriber</title>
+    <script>
+
+        function Publisher() {
+            this.events = {};
+        }
+        Publisher.prototype.publish = function (event_name) {
+            this.events[event_name].forEach(function (fn) {
+                fn();
+            });
+        };
+        Publisher.prototype.createEvent = function (name_of_event) {
+            console.log(this.events);
+            if (typeof this.events[name_of_event] === 'undefined') {
+                this.events[name_of_event] = [];
+            }
+        };
+
+        var national_geographic = new Publisher();
+        var events = ['ng1', 'ng2', 'ng3'];
+
+        events.forEach(national_geographic.createEvent);
+
+        function Subscriber(name) {
+            this.name = name;
+        }
+        Subscriber.prototype.subscribe = function (publisher, event_name, callback) {
+            publisher.events[event_name].push(callback);
+        };
+
+
+        // todo: fix the bugs, create a subscriber, subscribe to an event and publish event when a button is clicked
+
+
+    </script>
+</head>
+<body>
+    <button>Publish National Geographic's ng1</button>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+
+        var test = (function () {
+
+            var x = 10;
+
+
+            return {
+                name: 'James',
+                increment: function () {
+                    return x++;
+                }
+            }
+        }());
+
+        console.log(test.increment());
+        console.log(test.increment());
+        console.log(test.increment());
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

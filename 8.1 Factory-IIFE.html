@@ -5,25 +5,7 @@
     <title>Factory</title>
     <script>
 
-        function Audi(model) {
-            this.model = model;
-        }
-        Audi.prototype.make = 'Audi';
-
-        var a6 = new Audi('a6');
-        console.log(a6);
-
-        function BMW(model) {
-            this.model = model;
-        }
-        BMW.prototype.make = 'BMW';
-
-        var b328i = new BMW('328i');
-        console.log(b328i);
-
-        function CarFactory(make, model) {
-            // use appropriate constrcutor and return the object
-
+        var CarFactory = (function () {
             function Audi(model) {
                 this.model = model;
             }
@@ -38,10 +20,14 @@
                 'BMW': BMW
             };
 
-            console.log(registry[make]);
-            return new registry[make]();
+            function CarFactory(make, model) {
+                // use appropriate constrcutor and return the object
+                console.log(registry[make]);
+                return new registry[make]();
 
-        }
+            }
+            return CarFactory;
+        }());
 
         var a5 = CarFactory('Audi', 'a6');
         console.log(a5);
@@ -49,7 +35,7 @@
         console.log(a8);
 
         console.log(Object.getPrototypeOf(a5) === Object.getPrototypeOf(a8));
-        // todo: Solve the problem that the prototype of all audi objects is the same. Do not clutter the global namespace
+        // todo: Solve the issues ...
 
 
 

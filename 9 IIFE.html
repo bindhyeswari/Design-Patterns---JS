@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IIFE</title>
+    <script>
+
+        /*function initialLocation() {
+            navigator.geolocation.getCurrentPosition(function (obj) {
+                initialLocation.coords = obj.coords;
+            });
+        }
+
+        initialLocation();*/
+
+        // Immediately Invoked Function Expression
+        var CarFactory = (function test() {
+            console.log('hello world');
+
+            // create the constructors outside the local CarFactory function
+            // write the function
+
+        })();
+
+        console.log(test);
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
