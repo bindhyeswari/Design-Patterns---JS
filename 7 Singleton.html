@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Singleton</title>
+    <script>
+
+        function Security () {
+            Security.certificate = Security.certificate || this;
+            return Security.certificate;
+        }
+
+        var cert = new Security();
+
+        // stop this from happening
+        Security.certificate = 'anarchy!';
+        // todo: Do not let this happen
+
+        var cert2 = new Security();
+
+        // new Constructor()
+        // 1. creates an object
+        // 2. sets the prototype of the new object to Constructor.prototype
+        // 3. run the function Constructor this --> new object
+        // 4. returns the new object
+
+        console.log(cert === cert2);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
